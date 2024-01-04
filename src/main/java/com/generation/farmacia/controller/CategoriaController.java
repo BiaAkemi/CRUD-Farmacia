@@ -50,22 +50,22 @@ public class CategoriaController {
 	}
 
 	// Criando categoria
-	@PostMapping("/new") // localhost:8080/categoria/new
+	@PostMapping("/new") 
 	public ResponseEntity<Categoria> post(@Valid @RequestBody Categoria categoria) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(categoriaRepository.save(categoria));
 	}
 
 	// Atualizando categoria
-	@PutMapping("/edit") // localhost:8080/categoria/edit
+	@PutMapping("/edit") 
 	public ResponseEntity<Categoria> put(@Valid @RequestBody Categoria categoria) {
 		return categoriaRepository.findById(categoria.getId())
 				.map(resposta -> ResponseEntity.status(HttpStatus.CREATED).body(categoriaRepository.save(categoria)))
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
 
-	// Deletando categoria
+	// Deletando categoria por ID
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	@DeleteMapping("/delete/{id}") // localhost:8080/categoria/delete
+	@DeleteMapping("/delete/{id}") 
 	public void delete(@PathVariable Long id) {
 		Optional<Categoria> categoria = categoriaRepository.findById(id);
 
