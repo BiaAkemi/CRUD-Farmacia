@@ -24,7 +24,7 @@ import com.generation.farmacia.repository.CategoriaRepository;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/categorias")
+@RequestMapping("/categoria")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CategoriaController {
 	@Autowired
