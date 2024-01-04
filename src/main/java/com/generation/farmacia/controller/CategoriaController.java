@@ -27,6 +27,7 @@ import jakarta.validation.Valid;
 @RequestMapping("/categoria")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CategoriaController {
+	
 	@Autowired
 	private CategoriaRepository categoriaRepository;
 
@@ -50,22 +51,22 @@ public class CategoriaController {
 	}
 
 	// Criando categoria
-	@PostMapping("/new") 
+	@PostMapping("/new")
 	public ResponseEntity<Categoria> post(@Valid @RequestBody Categoria categoria) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(categoriaRepository.save(categoria));
 	}
 
 	// Atualizando categoria
-	@PutMapping("/edit") 
+	@PutMapping("/edit")
 	public ResponseEntity<Categoria> put(@Valid @RequestBody Categoria categoria) {
 		return categoriaRepository.findById(categoria.getId())
 				.map(resposta -> ResponseEntity.status(HttpStatus.CREATED).body(categoriaRepository.save(categoria)))
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
 
-	// Deletando categoria por ID
+	// Deletando categoria por id
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	@DeleteMapping("/delete/{id}") 
+	@DeleteMapping("/delete/{id}")
 	public void delete(@PathVariable Long id) {
 		Optional<Categoria> categoria = categoriaRepository.findById(id);
 
